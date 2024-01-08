@@ -8,6 +8,7 @@ interface IGlobalContext {
     updateAuthState: (isLogged: boolean) => void;
     theme: SelectableThemes;
     updateTheme: (newTheme: SelectableThemes) => void;
+    user: any;
 }
 
 const fetch = axios.create({
@@ -20,7 +21,8 @@ const GlobalContext = React.createContext<IGlobalContext>({
     updateTheme: () => {},
     fetch,
     isLogged: false,
-    updateAuthState: () => {}
+    updateAuthState: () => {},
+    user: undefined
 });
 
 export { GlobalContext, type IGlobalContext };

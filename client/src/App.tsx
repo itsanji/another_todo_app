@@ -11,6 +11,7 @@ import NoMatch from "./pages/NoMatch";
 function App() {
     const [socket, setSocket] = useState<WebSocket | null>(null);
     const globalContext = useContext(GlobalContext);
+    const [user, setUser] = useState(undefined);
     const [theme, setTheme] = useState<SelectableThemes>("cupcake");
     const [isLogged, setIsLogged] = useState(false);
 
@@ -47,8 +48,17 @@ function App() {
     //     );
     // };
 
+    useEffect(() => {
+        // fetch user info after logged in
+        if (isLogged && !user) {
+            globalContext.fetch;
+        }
+    }, [isLogged, user]);
+
     return (
-        <GlobalContext.Provider value={{ socket, fetch: globalContext.fetch, isLogged, updateAuthState: setIsLogged, theme, updateTheme: setTheme }}>
+        <GlobalContext.Provider
+            value={{ socket, fetch: globalContext.fetch, isLogged, updateAuthState: setIsLogged, theme, updateTheme: setTheme, user }}
+        >
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Dashboard />} />

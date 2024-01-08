@@ -41,3 +41,5 @@ interface ITodo {
     isDone: boolean;
     addedAt: string;
 }
+
+interface IUser {}
